@@ -11,14 +11,24 @@ export function createGallery(images) {
   const markup = images
     .map(
       img => `
-      <a href="${img.largeImageURL}" class="gallery-item">
-        <img src="${img.webformatURL}" alt="${img.tags}" />
-      </a>`
+        <li class="gallery-item">
+          <a href="${img.largeImageURL}">
+            <img src="${img.webformatURL}" alt="${img.tags}" />
+          </a>
+          <div class="info">
+            <p><b>Likes:</b> ${img.likes}</p>
+            <p><b>Views:</b> ${img.views}</p>
+            <p><b>Comments:</b> ${img.comments}</p>
+            <p><b>Downloads:</b> ${img.downloads}</p>
+          </div>
+        </li>
+      `
     )
     .join('');
   gallery.insertAdjacentHTML('beforeend', markup);
   lightbox.refresh();
 }
+
 
 export function clearGallery() {
   gallery.innerHTML = '';

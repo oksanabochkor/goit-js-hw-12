@@ -12,6 +12,7 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
 const loadMoreBtn = document.querySelector('.load-more');
+hideLoadMoreButton(); 
 
 let query = '';
 let page = 1;
