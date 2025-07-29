@@ -12,7 +12,9 @@ import 'izitoast/dist/css/iziToast.min.css';
 
 const form = document.querySelector('.form');
 const loadMoreBtn = document.querySelector('.load-more');
-hideLoadMoreButton(); 
+
+
+hideLoadMoreButton();
 
 let query = '';
 let page = 1;
@@ -21,7 +23,11 @@ let totalPages = 0;
 form.addEventListener('submit', async e => {
   e.preventDefault();
   query = e.target.elements.searchQuery.value.trim();
-  if (!query) return;
+
+  if (!query) {
+    hideLoadMoreButton(); 
+    return;
+  }
 
   page = 1;
   clearGallery();
@@ -30,7 +36,9 @@ form.addEventListener('submit', async e => {
 
   try {
     const data = await getImagesByQuery(query, page);
+
     if (data.hits.length === 0) {
+      hideLoadMoreButton(); 
       iziToast.warning({ message: 'No images found.' });
       return;
     }
@@ -38,9 +46,14 @@ form.addEventListener('submit', async e => {
     createGallery(data.hits);
     totalPages = Math.ceil(data.totalHits / 15);
 
-    if (page < totalPages) showLoadMoreButton();
-    else iziToast.info({ message: "You've reached the end of search results." });
+    if (page < totalPages) {
+      showLoadMoreButton();
+    } else {
+      iziToast.info({ message: "You've reached the end of search results." });
+    }
+
   } catch (error) {
+    hideLoadMoreButton(); 
     iziToast.error({ message: 'Error loading images.' });
   } finally {
     hideLoader();
@@ -57,6 +70,7 @@ loadMoreBtn.addEventListener('click', async () => {
     createGallery(data.hits);
 
     if (page >= totalPages) {
+      hideLoadMoreButton();
       iziToast.info({ message: "You've reached the end of search results." });
     } else {
       showLoadMoreButton();
@@ -64,10 +78,13 @@ loadMoreBtn.addEventListener('click', async () => {
 
     const { height: cardHeight } = document.querySelector('.gallery-item').getBoundingClientRect();
     window.scrollBy({ top: cardHeight * 2, behavior: 'smooth' });
+
   } catch (error) {
+    hideLoadMoreButton();
     iziToast.error({ message: 'Error loading more images.' });
   } finally {
     hideLoader();
   }
 });
+
 
