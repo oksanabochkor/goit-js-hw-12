@@ -84,10 +84,8 @@
                   margin: 0;
                   font-weight: 500;
                 }
-                
-           .is-hidden {
-                  display: none;
-                }
+
+           
                 
                 .loader {
                   display: block;
@@ -115,7 +113,10 @@
                                   transition: opacity 0.3s ease, visibility 0.3s ease;
                                 }
              
-        
+        .is-hidden {
+                  display: none;
+                }
+                
                 @keyframes spin {
                   to {
                     transform: rotate(360deg);
