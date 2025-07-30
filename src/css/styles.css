@@ -96,18 +96,7 @@
                   animation: spin 1s linear infinite;
                   margin: 0 auto 30px;
                 }
-        
-                .is-hidden {
-                  display: none;
-                }
-        
-                @keyframes spin {
-                  to {
-                    transform: rotate(360deg);
-                  }
-                }
-
-                                .load-more {
+        .load-more {
                                   display: block;
                                     
                                     margin: 20px auto;
@@ -122,4 +111,15 @@
                                   color: white;
                                   transition: opacity 0.3s ease, visibility 0.3s ease;
                                 }
+                .is-hidden {
+                  display: none;
+                }
+        
+                @keyframes spin {
+                  to {
+                    transform: rotate(360deg);
+                  }
+                }
+
+                                
         
