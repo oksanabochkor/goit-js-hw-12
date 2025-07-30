@@ -84,8 +84,11 @@
                   margin: 0;
                   font-weight: 500;
                 }
-        
-                /* Loader */
+                
+           .is-hidden {
+                  display: none;
+                }
+                
                 .loader {
                   display: block;
                   width: 64px;
@@ -111,9 +114,7 @@
                                   color: white;
                                   transition: opacity 0.3s ease, visibility 0.3s ease;
                                 }
-                .is-hidden {
-                  display: none;
-                }
+             
         
                 @keyframes spin {
                   to {
